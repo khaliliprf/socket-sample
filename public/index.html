@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <script>
+      const func = () => {
+        const message = document.getElementById("message-text").value;
+        const element = `<div
+        style="
+          width: 200px;
+          height: 100px;
+          background-color: yellow;
+          margin: 10px 10px;
+          text-align:center;
+          float:left;
+        "
+      >${message}</div>`;
+        document.querySelector(".box").innerHTML += element;
+      };
+      const socket = new WebSocket("ws://localhost:4000");
+
+      // socket.addEventListener("open", function (event) {
+      //   socket.send("Hello Server!");
+      // });
+
+      socket.addEventListener("message", function (event) {
+        console.log(event);
+        const element = `<div
+        style="
+          width: 200px;
+          height: 100px;
+          background-color: yellow;
+          margin: 10px 10px;
+          float:right;
+        "
+      >${event}</div>`;
+        document.querySelector(".box").innerHTML += html;
+      });
+    </script>
+  </head>
+
+  <body>
+    <div
+      style="
+        width: 400px;
+        height: 600px;
+        background-color: rgb(100, 100, 100);
+        margin: 0 auto;
+        padding: 0 auto;
+      "
+    >
+      <div
+        class="box"
+        style="
+          width: 350px;
+          height: 400px;
+          background-color: rgba(140, 195, 199, 0.822);
+          margin: 30px auto;
+        "
+      ></div>
+      <input
+        type="text"
+        name="message"
+        placeholder="Message"
+        id="message-text"
+      />
+      <button
+        style="
+          width: 200px;
+          height: 100px;
+          background-color: blue;
+          margin: 0 auto;
+        "
+        onclick="func()"
+      >
+        Send
+      </button>
+    </div>
+  </body>
+</html>
